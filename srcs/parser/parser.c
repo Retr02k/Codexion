@@ -6,11 +6,12 @@
 /*   By: psilva-p <psilva-p@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 17:35:25 by psilva-p          #+#    #+#             */
-/*   Updated: 2026/10/25 21:38:02 by psilva-p         ###   ########.fr       */
+/*   Updated: 2026/10/27 20:44:10 by psilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser/parser.h"
+#include "types.h"
 
 t_status	settings_setter(t_type type, int *base, int *offset)
 {
@@ -55,19 +56,19 @@ t_status	validate_arg(char *str, t_type type)
 	if (type == INT && (str[0] == '-' || str[0] == '+'))
 		return (ERROR_SIGNED_INT);
 	if (type == SCHEDULER && i > 4)
-		return (ERROR_INVALID_TYPE);
+		return (ERROR_SCHEDULER);
 	while (*str)
 	{
-		if (type == INT && !(is_allowed_char("0123456789", *str)))
+		if (type == INT && !(is_allowed_char(DECIMAL_BASE, *str)))
 			return (ERROR_NON_INT);
-		else if (type == SCHEDULER && !(is_allowed_char("edfio", *str)))
+		else if (type == SCHEDULER && !(is_allowed_char(SCHEDULER_BASE, *str)))
 			return (ERROR_SCHEDULER);
 		str++;
 	}
 	return (OK);
 }
 
-t_status	push_digit(int	*acc, int digit, int base)
+t_status	push_digit(int *acc, int digit, int base)
 {
 	if (*acc > (INT_MAX - digit) / base)
 		return (ERROR_OVERFLOW);
@@ -96,8 +97,8 @@ t_status	parse_arg(char *str, int *out, t_type type)
 			return (status);
 		str++;
 	}
-	*out = value;
-	if (type == SCHEDULER && *out != SCHED_EDF && *out != SCHED_FIFO)
+	if (type == SCHEDULER && value != SCHED_EDF && value != SCHED_FIFO)
 		return (ERROR_INVALID_SCHEDULER);
+	*out = value;
 	return (OK);
 }
