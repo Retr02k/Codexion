@@ -1,8 +1,9 @@
 NAME := Codexion
 
-COMPILE := cc -Wall -Werror -Wextra -I./includes
-SRCS := src/main.c \
-		src/parser/parser.c
+COMPILE := cc -Wall -Werror -Wextra -g -I./includes
+SRCS := srcs/main.c \
+		srcs/parser/parser.c \
+		srcs/init/init_config.c
 OBJS := $(SRCS:.c=.o)
 ARGS ?=
 
@@ -15,15 +16,14 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(COMPILE) -c $< -o $@
 
-debug: COMPILE += -g
-debug: re
-
-
 clean:
-	rm -fr $(OBJS)
+	@rm -fr $(OBJS)
 
 fclean: clean
-	rm -fr $(NAME)
+	@rm -fr $(NAME)
+
+debug: re
+	gdb $(NAME) $(ARGS)
 
 re: fclean all
 
