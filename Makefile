@@ -3,7 +3,8 @@ NAME := Codexion
 COMPILE := cc -Wall -Werror -Wextra -g -I./includes
 SRCS := srcs/main.c \
 		srcs/parser/parser.c \
-		srcs/init/init_config.c
+		srcs/init/init_config.c \
+		srcs/utils/utils.c
 OBJS := $(SRCS:.c=.o)
 ARGS ?=
 

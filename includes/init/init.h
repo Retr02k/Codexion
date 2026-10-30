@@ -6,7 +6,7 @@
 /*   By: psilva-p <psilva-p@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 18:54:18 by psilva-p          #+#    #+#             */
-/*   Updated: 2026/10/27 20:44:21 by psilva-p         ###   ########.fr       */
+/*   Updated: 2026/10/29 15:56:32 by psilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define INIT_H
 
 # include <unistd.h>
+# include <stdlib.h>
+# include <sys/time.h>
 # include "types.h"
 
 t_status	init_numeric(char **av, t_config *config);

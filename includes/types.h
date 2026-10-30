@@ -6,7 +6,7 @@
 /*   By: psilva-p <psilva-p@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 19:31:48 by psilva-p          #+#    #+#             */
-/*   Updated: 2026/10/29 13:39:41 by psilva-p         ###   ########.fr       */
+/*   Updated: 2026/10/29 23:45:01 by psilva-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdbool.h>
 # include <pthread.h>
 
-// Scheduler packed in base 256, first character in the highest byte
 # define FT_SCHED_EDF 6644838
 # define FT_SCHED_FIFO 1718183535
 
@@ -35,6 +34,9 @@ typedef enum e_status
 	ERROR_INVALID_SCHEDULER = 8,
 	ERROR_INVALID_ARG_COUNT = 9,
 	ERROR_NO_CODER = 10,
+	ERROR_MALLOC = 11,
+	ERROR_CLOCK = 12,
+	ERROR_MONITOR_THREAD = 13,
 }	t_status;
 
 typedef enum e_parser_type
